@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>MARIYAM SHAHID</title>
+    {% load static %}
+
+    <style>
+        body {
+            background-color: rgb(48, 42, 42);
+            color: #ffffff;
+        }
+        .custom-header {
+            padding: 0.5vw;
+            font-size: 1.5vw;            
+        }
+        a.nav-link {
+            color: aliceblue;
+        }
+        a.nav-link:hover {
+            color: aliceblue;
+            text-shadow: 
+                0 0 5px rgba(119, 83, 170, 0.8), /* Small, closer shadow */
+                0 0 10px rgba(119, 83, 170, 0.8), /* Medium shadow */
+                0 0 15px rgba(119, 83, 170, 0.8), /* Larger shadow */
+                0 0 20px rgba(119, 83, 170, 1); /* Most prominent shadow */
+            transition: text-shadow 0.2s ease; /* Smooth transition */
+        }
+        .jumbotron-custom {
+            border: 2px solid #ffffff; /* Set the border color and thickness */
+            border-radius: 15px; /* Set the border radius for rounded corners */
+            transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the glow effect */
+            width:50vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .jumbotron-custom:hover {
+        box-shadow: 0 0 50px rgba(119, 83, 170, 0.8); /* Add a glowing effect on hover */
+        }
+        .jumbotron-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul class="nav justify-content-center shadow-lg custom-header">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'projectList' %}">All Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'detailView' key=1%}">Detailed View</a>
+            </li>
+        </ul>
+    </div>
+    <div class="jumbotron-container m-3">
+        {% for project in projects %}
+        <div class="jumbotron jumbotron-custom m-3">
+            <div class="container" >
+              <h1 class="display-3 " >{{project.title}}</h1>    
+              <a href="{% url 'detailView' key=project.id%}" style="margin-left: 20px;color: #ffffff;font-size: larger;">View Details</a>    
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
